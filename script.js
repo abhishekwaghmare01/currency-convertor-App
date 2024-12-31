@@ -41,13 +41,24 @@ countries.forEach(country => {
     //setting default value of selecting tags
     fromCurrencyElement.value = "USD";
     toCurrencyElement.value = "INR";
-
-    //function to get exchange rate using API
-
-    const getExchangerate = () =>{
-        const amount = parseFloat(fromAmountElement.value);
-        const fromCurrency = fromCurrencyElement.value;
-        const toCurrency = toCurrencyElement.value; 
-    }
-
 })
+ //function to get exchange rate using API
+
+ const getExchangeRate = async () =>{
+    const amount = parseFloat(fromAmountElement.value);
+    const fromCurrency = fromCurrencyElement.value;
+    const toCurrency = toCurrencyElement.value; 
+
+    //fetch data from API
+    const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
+    const data = await response.json(); 
+    // console.log(data);
+    const conversionRate = data.rates[toCurrency];
+    const convertedAmount = (amount * conversionRate);
+
+    convertedAmountElement.value = convertedAmount;
+
+}
+fromAmountElement.addEventListener('input', getExchangeRate);
+
+
