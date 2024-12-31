@@ -41,4 +41,13 @@ countries.forEach(country => {
     //setting default value of selecting tags
     fromCurrencyElement.value = "USD";
     toCurrencyElement.value = "INR";
+
+    //function to get exchange rate using API
+
+    const getExchangerate = () =>{
+        const amount = parseFloat(fromAmountElement.value);
+        const fromCurrency = fromCurrencyElement.value;
+        const toCurrency = toCurrencyElement.value; 
+    }
+
 })
